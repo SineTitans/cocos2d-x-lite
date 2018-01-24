@@ -66,7 +66,14 @@ bool TMXLayer::initWithTilesetInfo(TMXTilesetInfo *tilesetInfo, TMXLayerInfo *la
 {
     if( tilesetInfo )
     {
-        _texture = Director::getInstance()->getTextureCache()->addImage(tilesetInfo->_sourceImage);
+        if (nullptr != tilesetInfo->_preloadedTexture)
+        {
+            _texture = tilesetInfo->_preloadedTexture;
+        }
+        else
+        {
+            _texture = Director::getInstance()->getTextureCache()->addImage(tilesetInfo->_sourceImage);
+        }
         _texture->retain();
     }
 
@@ -125,7 +132,7 @@ TMXLayer::~TMXLayer()
 {
     CC_SAFE_RELEASE(_tileSet);
     CC_SAFE_RELEASE(_texture);
-    CC_SAFE_DELETE_ARRAY(_tiles);
+    CC_SAFE_FREE(_tiles);
     CC_SAFE_RELEASE(_vData);
     CC_SAFE_RELEASE(_vertexBuffer);
     CC_SAFE_RELEASE(_indexBuffer);

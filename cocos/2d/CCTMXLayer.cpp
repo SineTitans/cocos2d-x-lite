@@ -59,7 +59,14 @@ bool TMXLayer::initWithTilesetInfo(TMXTilesetInfo *tilesetInfo, TMXLayerInfo *la
     Texture2D *texture = nullptr;
     if( tilesetInfo )
     {
-        texture = Director::getInstance()->getTextureCache()->addImage(tilesetInfo->_sourceImage);
+        if (nullptr != tilesetInfo->_preloadedTexture)
+        {
+            texture = tilesetInfo->_preloadedTexture;
+        }
+        else
+        {
+            texture = Director::getInstance()->getTextureCache()->addImage(tilesetInfo->_sourceImage);
+        }
     }
 
     if (nullptr == texture)
@@ -145,16 +152,12 @@ TMXLayer::~TMXLayer()
         _atlasIndexArray = nullptr;
     }
 
-    CC_SAFE_DELETE_ARRAY(_tiles);
+    CC_SAFE_FREE(_tiles);
 }
 
 void TMXLayer::releaseMap()
 {
-    if (_tiles)
-    {
-        delete [] _tiles;
-        _tiles = nullptr;
-    }
+    CC_SAFE_FREE(_tiles);
 
     if (_atlasIndexArray)
     {

@@ -2189,13 +2189,13 @@ bool
 },
 
 /**
- * @method isAntiAliasEnabled
- * @return {bool}
+ * @method getSafeAreaRect
+ * @return {rect_object}
  */
-isAntiAliasEnabled : function (
+getSafeAreaRect : function (
 )
 {
-    return false;
+    return cc.Rect;
 },
 
 /**
@@ -2464,6 +2464,16 @@ pollEvents : function (
 {
 },
 
+/**
+ * @method isAntiAliasEnabled
+ * @return {bool}
+ */
+isAntiAliasEnabled : function (
+)
+{
+    return false;
+},
+
 };
 
 /**
@@ -2510,6 +2520,16 @@ float
 },
 
 /**
+ * @method getDeltaTime
+ * @return {float}
+ */
+getDeltaTime : function (
+)
+{
+    return 0;
+},
+
+/**
  * @method getContentScaleFactor
  * @return {float}
  */
@@ -2530,13 +2550,13 @@ getWinSizeInPixels : function (
 },
 
 /**
- * @method getDeltaTime
- * @return {float}
+ * @method getSafeAreaRect
+ * @return {rect_object}
  */
-getDeltaTime : function (
+getSafeAreaRect : function (
 )
 {
-    return 0;
+    return cc.Rect;
 },
 
 /**
@@ -15881,11 +15901,13 @@ int
  * @method initWithXML
  * @param {String} arg0
  * @param {String} arg1
+ * @param {map_object} arg2
  * @return {bool}
  */
 initWithXML : function (
 str, 
-str 
+str, 
+map 
 )
 {
     return false;
@@ -16137,11 +16159,13 @@ str
  * @method createWithXML
  * @param {String} arg0
  * @param {String} arg1
+ * @param {map_object} arg2
  * @return {cc.TMXMapInfo}
  */
 createWithXML : function (
 str, 
-str 
+str, 
+map 
 )
 {
     return cc.TMXMapInfo;
@@ -16529,13 +16553,15 @@ getMapSize : function (
 
 /**
  * @method initWithXML
- * @param {String} arg0
- * @param {String} arg1
- * @return {bool}
- */
-initWithXML : function (
-str, 
-str 
+* @param {String|String} str
+* @param {String|String} str
+* @param {map_object} map
+* @return {bool|bool}
+*/
+initWithXML : function(
+str,
+str,
+map 
 )
 {
     return false;

@@ -1549,16 +1549,16 @@ str
 
 /**
  * @method parseTextureAtlasData
- * @param {String} arg0
- * @param {String} arg1
- * @param {String} arg2
- * @param {float} arg3
- * @return {dragonBones::TextureAtlasData}
- */
-parseTextureAtlasData : function (
-str, 
-str, 
-str, 
+* @param {String|String} str
+* @param {String|cc.Texture2D} str
+* @param {String|String} str
+* @param {float|float} float
+* @return {dragonBones::TextureAtlasData|dragonBones::TextureAtlasData}
+*/
+parseTextureAtlasData : function(
+str,
+texture2d,
+str,
 float 
 )
 {
